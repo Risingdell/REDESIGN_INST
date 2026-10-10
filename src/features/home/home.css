@@ -609,10 +609,6 @@
   background: linear-gradient(135deg, var(--gold-100), var(--surface) 60%);
 }
 
-:root[data-theme='dark'] .match__item.is-best {
-  background: linear-gradient(135deg, rgb(242 179 61 / 0.12), var(--surface) 60%);
-}
-
 /* Percentage ring drawn with a conic gradient. */
 .match__ring {
   --deg: calc(var(--p) * 3.6deg);
@@ -2018,18 +2014,4 @@
   .numbers__item dd {
     -webkit-text-stroke-width: 1.5px;
   }
-}
-
-:root[data-theme='dark'] .chapters {
-  background: rgb(7 19 14 / 0.9);
-}
-
-:root[data-theme='dark'] .dept-card,
-:root[data-theme='dark'] .mission__card,
-:root[data-theme='dark'] .dept-card--emergency {
-  background: var(--surface);
-}
-
-:root[data-theme='dark'] .rail__panel {
-  background: rgb(13 31 23 / 0.95);
 }

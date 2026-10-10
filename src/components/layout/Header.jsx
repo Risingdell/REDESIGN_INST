@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { site } from '@/config/site';
 import { audienceNav, primaryNav } from '@/content/navigation';
 import { useUI } from '@/context/UIContext';
-import { usePreferences } from '@/context/PreferencesContext';
 import { Icon } from '@/components/ui/Icon';
 import { Button, SmartLink } from '@/components/ui/Button';
 import { MobileNav } from './MobileNav';
@@ -28,23 +27,6 @@ function Ticker() {
         </ul>
       </div>
     </div>
-  );
-}
-
-export function ThemeToggle({ className = 'icon-btn header__icon' }) {
-  const { theme, setTheme } = usePreferences();
-  const isDark =
-    theme === 'dark' || (theme === 'system' && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  return (
-    <button
-      type="button"
-      className={className}
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-      title={isDark ? 'Light theme' : 'Dark theme'}
-    >
-      <Icon name={isDark ? 'sun' : 'moon'} />
-    </button>
   );
 }
 
@@ -208,7 +190,6 @@ export function Header() {
                 <span>Search</span>
                 <kbd>Ctrl K</kbd>
               </button>
-              <ThemeToggle />
               <Button to="/admissions/apply" variant="gold" size="sm" icon="arrow-right" className="header__apply">
                 Apply now
               </Button>

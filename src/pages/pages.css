@@ -289,11 +289,6 @@ a.tile:hover,
   font-weight: 600;
 }
 
-:root[data-theme='dark'] .review-flag {
-  background: rgb(242 179 61 / 0.12);
-  color: var(--gold-300);
-}
-
 /* Map */
 .map-embed {
   width: 100%;

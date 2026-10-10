@@ -104,13 +104,6 @@ h3 em {
   -webkit-text-fill-color: currentColor;
 }
 
-:root[data-theme='dark'] h1 em,
-:root[data-theme='dark'] h2 em,
-:root[data-theme='dark'] h3 em {
-  background: none;
-  -webkit-text-fill-color: currentColor;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -30,7 +30,7 @@ src/
   lib/          Pure logic with unit tests (fuzzy search, fee maths, validators, slots, .ics)
   services/     The only code that talks to the outside world: API, payments, analytics
   pages/        One file per route; pages compose features and content
-  styles/       Design tokens (light/dark), base styles, utilities, shared components
+  styles/       Design tokens (single white theme), base styles, utilities, shared components
 docs/           AUDIT.md (current-site audit) and ARCHITECTURE.md (design decisions)
 ```
 

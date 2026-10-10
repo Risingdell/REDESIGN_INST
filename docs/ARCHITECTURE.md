@@ -6,7 +6,7 @@
 2. **Logic is pure and tested.** Search, fee maths, validation, booking slots, calendar export and the chat engine live in `src/lib` with unit tests and no React.
 3. **One gateway to the outside world.** Only `src/services` makes network calls (forms, payments, analytics), which makes preview mode, testing and swapping vendors trivial.
 4. **Pay for what you use.** Every page and every overlay (search, chat, enquiry drawer) is a separate lazy chunk.
-5. **Mobile first and accessible by default.** Keyboard support, focus traps, labelled controls, reduced-motion support, and AA colour contrast in both themes.
+5. **Mobile first and accessible by default.** Keyboard support, focus traps, labelled controls, reduced-motion support, and AA colour contrast on white.
 
 ## Request flow
 
@@ -20,10 +20,10 @@ route → pages/XPage.jsx → features/* + components/ui/* → content/* (data)
 
 | C | Where it lives |
 | --- | --- |
-| **Context** (look, layout, hierarchy) | `styles/tokens.css` design tokens with light and dark themes; two-tier header with ticker and mega menu; photo heroes; consistent section rhythm. |
+| **Context** (look, layout, hierarchy) | `styles/tokens.css` design tokens for a single all-white theme (client requirement); two-tier header with ticker and mega menu; photo heroes; consistent section rhythm. |
 | **Content** | `content/*` (programmes, institutions, departments, news, FAQs, videos, tour) with per-page SEO meta and schema.org data. |
 | **Community** | Testimonial carousel, "Share your story" form (moderated), alumni network sign-up, social rail and links. |
-| **Customisation** | "I am a…" audience switcher reshapes the hero, calls to action and quick links; shortlist, compare tray, recently viewed and dark mode. All stored in the visitor's browser only (`PreferencesContext`). |
+| **Customisation** | "I am a…" audience switcher reshapes the hero, calls to action and quick links; shortlist, compare tray and recently viewed. All stored in the visitor's browser only (`PreferencesContext`). |
 | **Communication** | Chat assistant with human hand-off, call-back drawer, enquiry form, WhatsApp, newsletter, click-to-call bar on mobile. |
 | **Connection** | Institution sub-sites, RGUHS, public school, newsletter PDF, Google Maps, social networks, add-to-calendar (.ics), share buttons. |
 | **Commerce** | Online application with application-fee checkout (`features/checkout`, gateway adapter in `services/paymentService.js`); hospital appointment and campus-visit booking with time slots. |

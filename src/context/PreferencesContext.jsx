@@ -14,18 +14,20 @@ const MAX_RECENT = 6;
 
 export function PreferencesProvider({ children }) {
   const [audienceId, setAudienceId] = useLocalStorage('kiet:audience', null);
-  // Client requirement: the white (light) theme is the default; dark stays available via the toggle.
-  const [theme, setTheme] = useLocalStorage('kiet:theme', 'light');
   const [shortlist, setShortlist] = useLocalStorage('kiet:shortlist', []);
   const [compare, setCompare] = useLocalStorage('kiet:compare', []);
   const [recent, setRecent] = useLocalStorage('kiet:recent', []);
 
-  // Apply the theme to <html> so CSS tokens switch everywhere at once.
+  // White is the only theme (client requirement). Clear the old setting and
+  // attribute left by earlier versions of the site that had a dark mode.
   useEffect(() => {
-    const root = document.documentElement;
-    if (theme === 'system') root.removeAttribute('data-theme');
-    else root.setAttribute('data-theme', theme);
-  }, [theme]);
+    document.documentElement.removeAttribute('data-theme');
+    try {
+      localStorage.removeItem('kiet:theme');
+    } catch {
+      /* storage unavailable */
+    }
+  }, []);
 
   const chooseAudience = useCallback(
     (id) => {
@@ -65,8 +67,6 @@ export function PreferencesProvider({ children }) {
       hasChosenAudience: Boolean(audienceId),
       audience: audiences[audienceId] || audiences[defaultAudience],
       chooseAudience,
-      theme,
-      setTheme,
       shortlist,
       toggleShortlist,
       compare,
@@ -76,7 +76,7 @@ export function PreferencesProvider({ children }) {
       recent,
       markViewed,
     }),
-    [audienceId, chooseAudience, theme, setTheme, shortlist, toggleShortlist, compare, toggleCompare, setCompare, recent, markViewed],
+    [audienceId, chooseAudience, shortlist, toggleShortlist, compare, toggleCompare, setCompare, recent, markViewed],
   );
 
   return <PreferencesContext.Provider value={value}>{children}</PreferencesContext.Provider>;

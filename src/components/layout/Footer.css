@@ -248,15 +248,6 @@
   color: transparent;
 }
 
-:root[data-theme='dark'] .footer {
-  background: var(--bg);
-}
-
-:root[data-theme='dark'] .footer__cta-inner,
-:root[data-theme='dark'] .footer__social a {
-  background: var(--surface);
-}
-
 @media (max-width: 1024px) {
   .footer__grid {
     grid-template-columns: 1fr 1fr;

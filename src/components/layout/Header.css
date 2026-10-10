@@ -450,7 +450,4 @@
   .brand__text small {
     display: none;
   }
-  .header__actions .header__icon:not(.header__menu) {
-    display: none;
-  }
 }

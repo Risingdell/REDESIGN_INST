@@ -1,8 +1,8 @@
 /*
  * Design tokens. Palette is drawn from the Kanachur crest: emerald green,
  * crimson and a warm gold used sparingly for primary actions.
- * Components only use the semantic tokens (--bg, --text, --primary…), so the
- * dark theme is a pure token swap.
+ * Components only use the semantic tokens (--bg, --text, --primary…).
+ * The site has a single white theme (client requirement) — no dark mode.
  */
 :root {
   /* Brand scales */
@@ -98,55 +98,6 @@
   --t-slow: 700ms;
 
   color-scheme: light;
-}
-
-/* Dark theme: explicit choice, or system preference when no choice is stored. */
-:root[data-theme='dark'] {
-  --bg: #07130e;
-  --surface: #0d1f17;
-  --surface-2: #11281e;
-  --surface-3: #173426;
-  --text: #e9f3ee;
-  --text-2: #c3d4cb;
-  --muted: #8ea69a;
-  --line: #1f3a2d;
-  --line-strong: #2b4d3c;
-  --primary: var(--emerald-300);
-  --primary-strong: #a6e3c3;
-  --primary-soft: #10291e;
-  --on-primary: #03170f;
-  --accent: #ff6b74;
-  --accent-soft: #3a1418;
-  --overlay: rgb(2 12 8 / 0.7);
-  --sh-1: 0 1px 2px rgb(0 0 0 / 0.4);
-  --sh-2: 0 8px 20px rgb(0 0 0 / 0.35);
-  --sh-3: 0 22px 50px -12px rgb(0 0 0 / 0.6);
-  color-scheme: dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --bg: #07130e;
-    --surface: #0d1f17;
-    --surface-2: #11281e;
-    --surface-3: #173426;
-    --text: #e9f3ee;
-    --text-2: #c3d4cb;
-    --muted: #8ea69a;
-    --line: #1f3a2d;
-    --line-strong: #2b4d3c;
-    --primary: var(--emerald-300);
-    --primary-strong: #a6e3c3;
-    --primary-soft: #10291e;
-    --on-primary: #03170f;
-    --accent: #ff6b74;
-    --accent-soft: #3a1418;
-    --overlay: rgb(2 12 8 / 0.7);
-    --sh-1: 0 1px 2px rgb(0 0 0 / 0.4);
-    --sh-2: 0 8px 20px rgb(0 0 0 / 0.35);
-    --sh-3: 0 22px 50px -12px rgb(0 0 0 / 0.6);
-    color-scheme: dark;
-  }
 }
 
 @media (max-width: 1080px) {

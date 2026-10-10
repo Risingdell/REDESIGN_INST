@@ -5,7 +5,6 @@ import { site } from '@/config/site';
 import { useFocusTrap } from '@/hooks/useFocusTrap';
 import { Icon } from '@/components/ui/Icon';
 import { Button, SmartLink } from '@/components/ui/Button';
-import { ThemeToggle } from './Header';
 import './MobileNav.css';
 
 /** Full-height drawer navigation for phones and tablets. */
@@ -23,7 +22,6 @@ export function MobileNav({ open, onClose }) {
             <img src="/images/logo.webp" alt="" width="40" height="40" />
             Kanachur
           </Link>
-          <ThemeToggle className="icon-btn" />
           <button type="button" className="icon-btn" onClick={onClose} aria-label="Close menu">
             <Icon name="x" />
           </button>
