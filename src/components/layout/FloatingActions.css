@@ -1,38 +1,3 @@
-/* ---------- Social rail (desktop) ---------- */
-.social-rail {
-  position: fixed;
-  right: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 90;
-  display: grid;
-  gap: 8px;
-  margin: 0;
-  padding: 8px;
-  list-style: none;
-  border-radius: var(--r-pill);
-  background: color-mix(in srgb, var(--surface) 80%, transparent);
-  backdrop-filter: blur(10px);
-  box-shadow: var(--sh-2);
-  border: 1px solid var(--line);
-}
-
-.social-rail a {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  color: var(--text-2);
-  transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast);
-}
-
-.social-rail a:hover {
-  background: var(--primary);
-  color: var(--on-primary);
-  transform: scale(1.08);
-}
-
 /* ---------- Floating buttons ---------- */
 .floating-actions {
   position: fixed;
@@ -124,12 +89,6 @@
 /* ---------- Mobile bottom bar ---------- */
 .mobile-bar {
   display: none;
-}
-
-@media (max-width: 1280px) {
-  .social-rail {
-    display: none;
-  }
 }
 
 @media (max-width: 760px) {

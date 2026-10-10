@@ -7,7 +7,8 @@ import './FloatingActions.css';
 
 const waLink = `https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent('Hello Kanachur, I would like some information.')}`;
 
-/** Desktop: social rail + chat launcher + WhatsApp + back-to-top. Mobile: bottom action bar. */
+/** Desktop: chat launcher + WhatsApp + back-to-top. Mobile: bottom action bar.
+ *  Social links live only in the footer. */
 export function FloatingActions() {
   const { toggleChat, chatOpen, openSearch } = useUI();
   const [showTop, setShowTop] = useState(false);
@@ -28,16 +29,6 @@ export function FloatingActions() {
 
   return (
     <>
-      <ul className="social-rail" aria-label="Follow Kanachur">
-        {site.social.map((s) => (
-          <li key={s.id}>
-            <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
-              <Icon name={s.id} size={16} />
-            </a>
-          </li>
-        ))}
-      </ul>
-
       <div className="floating-actions">
         <button
           type="button"
