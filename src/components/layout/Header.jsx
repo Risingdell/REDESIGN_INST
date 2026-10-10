@@ -150,7 +150,10 @@ export function Header() {
             <Link to="/" className="brand" aria-label={`${site.name} — home`}>
               <img src="/images/logo.webp" alt="" width="52" height="52" />
               <span className="brand__text">
-                <strong>Kanachur</strong>
+                <strong className="wordmark" aria-hidden="true">
+                  <span className="wordmark__a">Kana</span>
+                  <span className="wordmark__b">chur</span>
+                </strong>
                 <small>Islamic Education Trust (R)</small>
               </span>
             </Link>

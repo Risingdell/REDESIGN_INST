@@ -1240,8 +1240,8 @@
   right: 0;
   bottom: 0;
   width: 48%;
+  /* Updated every animation frame by useParallax — no transition, or it lags. */
   transform: translateY(var(--parallax, 0px));
-  transition: transform 120ms linear;
 }
 
 .why__img-wrap img {

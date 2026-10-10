@@ -21,8 +21,14 @@ export function ChapterNav() {
   const index = Math.max(0, IDS.indexOf(active));
 
   // Keep the active chapter visible when the row scrolls sideways on phones.
+  // Scroll only the row itself — scrollIntoView() would also nudge the page
+  // vertically every time the chapter changes, which shows up as a jump.
   useEffect(() => {
-    listRef.current?.querySelector('[aria-current="true"]')?.scrollIntoView({ block: 'nearest', inline: 'center' });
+    const list = listRef.current;
+    const item = list?.querySelector('[aria-current="true"]');
+    if (!list || !item || list.scrollWidth <= list.clientWidth) return;
+    const left = item.offsetLeft - list.offsetLeft - (list.clientWidth - item.offsetWidth) / 2;
+    list.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
   }, [active]);
 
   return (

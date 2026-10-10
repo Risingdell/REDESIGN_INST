@@ -20,7 +20,10 @@ export function MobileNav({ open, onClose }) {
         <div className="mnav__top">
           <Link to="/" className="mnav__brand" onClick={onClose}>
             <img src="/images/logo.webp" alt="" width="40" height="40" />
-            Kanachur
+            <strong className="wordmark wordmark--sm">
+              <span className="wordmark__a">Kana</span>
+              <span className="wordmark__b">chur</span>
+            </strong>
           </Link>
           <button type="button" className="icon-btn" onClick={onClose} aria-label="Close menu">
             <Icon name="x" />

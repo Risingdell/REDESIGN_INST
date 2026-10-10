@@ -130,12 +130,28 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
 }
 
+/* Fixed, equal columns: items always share the full row width
+   (auto-fill used to leave an empty column on wide screens). */
 .grid--3 {
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid--4 {
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1024px) {
+  .grid--3,
+  .grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .grid--3,
+  .grid--4 {
+    grid-template-columns: 1fr;
+  }
 }
 
 .stack > * + * {

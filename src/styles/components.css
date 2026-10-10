@@ -752,3 +752,31 @@
   margin: 0 auto 12px;
   color: var(--primary);
 }
+
+/* ---------- KANACHUR wordmark ----------
+   Tall condensed caps, two-tone, with a slight red/teal colour-offset
+   shadow. "KANA" takes the current text colour (white on photos, ink on
+   white); "CHUR" is always crimson. */
+.wordmark {
+  display: inline-flex;
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.wordmark__a {
+  color: currentColor;
+  text-shadow: -1.5px 0 rgb(212 42 54 / 0.75), 1.5px 0 rgb(23 160 170 / 0.75);
+}
+
+.wordmark__b {
+  color: var(--crimson-500);
+  text-shadow: -1.5px 0 rgb(23 160 170 / 0.55), 1.5px 0 rgb(143 13 24 / 0.6);
+}
+
+.wordmark--sm {
+  font-size: 1.45rem;
+}

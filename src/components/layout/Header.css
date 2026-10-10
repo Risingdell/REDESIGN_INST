@@ -188,17 +188,18 @@
   line-height: 1.1;
 }
 
-.brand__text strong {
-  font-size: 1.3rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+.brand__text {
+  gap: 3px;
 }
 
+/* Sub-line in the same condensed brand face. */
 .brand__text small {
+  font-family: var(--font-brand);
   font-size: 0.72rem;
-  font-weight: 600;
-  opacity: 0.8;
-  letter-spacing: 0.02em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 
 .nav {
@@ -225,10 +226,14 @@
   background: rgb(127 209 166 / 0.14);
 }
 
+/* Header nav shares the wordmark's condensed face. */
 .nav__link {
   padding: 10px 2px 10px 14px;
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   white-space: nowrap;
   position: relative;
 }
