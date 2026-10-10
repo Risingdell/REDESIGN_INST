@@ -1,0 +1,73 @@
+.page-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(340px, 44vh, 460px);
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Compact heroes size to their content (plus the header clearance). */
+.page-hero--compact {
+  min-height: 0;
+}
+
+.page-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  animation: hero-zoom 18s ease-out both;
+}
+
+.page-hero__shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgb(3 23 15 / 0.35) 0%, rgb(3 23 15 / 0.55) 45%, rgb(3 23 15 / 0.92) 100%),
+    linear-gradient(90deg, rgb(3 23 15 / 0.6), transparent 70%);
+}
+
+.page-hero__inner {
+  /* Clear the fixed ticker + utility bar + nav. */
+  padding-top: calc(var(--ticker-h) + var(--utility-h) + var(--header-h) + 24px);
+  padding-bottom: clamp(28px, 4vw, 52px);
+  display: grid;
+  gap: 12px;
+}
+
+.page-hero h1 {
+  color: #fff;
+  font-size: var(--fs-h1);
+  max-width: 900px;
+}
+
+.page-hero h1 em {
+  color: var(--gold-300);
+}
+
+.page-hero__eyebrow {
+  color: var(--gold-300);
+}
+
+.page-hero__lead {
+  max-width: 680px;
+  font-size: var(--fs-lead);
+  color: rgb(255 255 255 / 0.86);
+}
+
+.page-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.08);
+  }
+}

@@ -1,0 +1,148 @@
+/*
+ * Design tokens. Palette is drawn from the Kanachur crest: emerald green,
+ * crimson and a warm gold used sparingly for primary actions.
+ * Components only use the semantic tokens (--bg, --text, --primary…), so the
+ * dark theme is a pure token swap.
+ */
+:root {
+  /* Brand scales */
+  --emerald-950: #03170f;
+  --emerald-900: #062a1c;
+  --emerald-800: #0a3d29;
+  --emerald-700: #0b5d3b;
+  --emerald-600: #0f7a4b;
+  --emerald-500: #17995d;
+  --emerald-300: #7fd1a6;
+  --emerald-100: #dcf2e5;
+  --emerald-50: #eff8f2;
+
+  --crimson-700: #8f0d18;
+  --crimson-600: #b3121f;
+  --crimson-500: #d42a36;
+  --crimson-100: #fde6e8;
+
+  --gold-600: #d38f12;
+  --gold-500: #f2b33d;
+  --gold-300: #f8d488;
+  --gold-100: #fdf3dc;
+
+  /* Semantic — light */
+  --bg: #fbfcfb;
+  --surface: #ffffff;
+  --surface-2: #f3f7f4;
+  --surface-3: #e7f0ea;
+  --text: #0e1a15;
+  --text-2: #2f4038;
+  --muted: #5d6e66;
+  --line: #e0e8e3;
+  --line-strong: #c9d6ce;
+  --primary: var(--emerald-700);
+  --primary-strong: var(--emerald-800);
+  --primary-soft: var(--emerald-50);
+  --on-primary: #ffffff;
+  --accent: var(--crimson-600);
+  --accent-soft: var(--crimson-100);
+  --gold: var(--gold-500);
+  --on-gold: #1d1404;
+  --focus: #2a7fff;
+  --overlay: rgb(3 23 15 / 0.62);
+  --hero-ink: #ffffff;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --fs-hero: clamp(2.6rem, 4.6vw + 1rem, 5.4rem);
+  --fs-h1: clamp(2.2rem, 3vw + 1rem, 3.75rem);
+  --fs-h2: clamp(1.85rem, 1.9vw + 1rem, 2.9rem);
+  --fs-h3: clamp(1.15rem, 0.5vw + 1rem, 1.4rem);
+  --fs-lead: clamp(1.02rem, 0.35vw + 0.95rem, 1.2rem);
+  --fs-body: 1rem;
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.75rem;
+
+  /* Layout */
+  --container: 1280px;
+  --container-narrow: 860px;
+  --gutter: clamp(16px, 3.5vw, 32px);
+  /* Vertical rhythm: ~36px on phones, ~72px on wide screens. */
+  --section: clamp(36px, 5vw, 72px);
+  --section-head-gap: clamp(18px, 2.4vw, 32px);
+  --header-h: 76px;
+  --utility-h: 40px;
+  --ticker-h: 36px;
+
+  /* Shape & depth */
+  --r-xs: 8px;
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 26px;
+  --r-xl: 36px;
+  --r-pill: 999px;
+  --sh-1: 0 1px 2px rgb(6 42 28 / 0.06), 0 2px 8px rgb(6 42 28 / 0.05);
+  --sh-2: 0 6px 18px rgb(6 42 28 / 0.08), 0 2px 6px rgb(6 42 28 / 0.05);
+  --sh-3: 0 22px 50px -12px rgb(6 42 28 / 0.28);
+  --sh-glow: 0 10px 30px -8px rgb(242 179 61 / 0.55);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 160ms;
+  --t-med: 320ms;
+  --t-slow: 700ms;
+
+  color-scheme: light;
+}
+
+/* Dark theme: explicit choice, or system preference when no choice is stored. */
+:root[data-theme='dark'] {
+  --bg: #07130e;
+  --surface: #0d1f17;
+  --surface-2: #11281e;
+  --surface-3: #173426;
+  --text: #e9f3ee;
+  --text-2: #c3d4cb;
+  --muted: #8ea69a;
+  --line: #1f3a2d;
+  --line-strong: #2b4d3c;
+  --primary: var(--emerald-300);
+  --primary-strong: #a6e3c3;
+  --primary-soft: #10291e;
+  --on-primary: #03170f;
+  --accent: #ff6b74;
+  --accent-soft: #3a1418;
+  --overlay: rgb(2 12 8 / 0.7);
+  --sh-1: 0 1px 2px rgb(0 0 0 / 0.4);
+  --sh-2: 0 8px 20px rgb(0 0 0 / 0.35);
+  --sh-3: 0 22px 50px -12px rgb(0 0 0 / 0.6);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #07130e;
+    --surface: #0d1f17;
+    --surface-2: #11281e;
+    --surface-3: #173426;
+    --text: #e9f3ee;
+    --text-2: #c3d4cb;
+    --muted: #8ea69a;
+    --line: #1f3a2d;
+    --line-strong: #2b4d3c;
+    --primary: var(--emerald-300);
+    --primary-strong: #a6e3c3;
+    --primary-soft: #10291e;
+    --on-primary: #03170f;
+    --accent: #ff6b74;
+    --accent-soft: #3a1418;
+    --overlay: rgb(2 12 8 / 0.7);
+    --sh-1: 0 1px 2px rgb(0 0 0 / 0.4);
+    --sh-2: 0 8px 20px rgb(0 0 0 / 0.35);
+    --sh-3: 0 22px 50px -12px rgb(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+}
+
+@media (max-width: 1080px) {
+  :root {
+    --header-h: 66px;
+  }
+}

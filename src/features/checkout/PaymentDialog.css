@@ -1,0 +1,122 @@
+.pay {
+  display: grid;
+  gap: 18px;
+}
+
+.pay__summary {
+  padding: 18px;
+  border-radius: var(--r-md);
+  background: linear-gradient(150deg, var(--emerald-800), var(--emerald-950));
+  color: #e8f4ee;
+}
+
+.pay__summary > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.pay__summary .muted {
+  color: #a9c8b8;
+  font-weight: 600;
+}
+
+.pay__summary strong {
+  font-size: 2rem;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.pay__summary dl {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid rgb(255 255 255 / 0.15);
+  display: grid;
+  gap: 6px;
+  font-size: var(--fs-sm);
+}
+
+.pay__summary dl div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pay__summary dt {
+  color: #a9c8b8;
+}
+
+.pay__summary dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.pay__demo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: var(--gold-100);
+  color: #7a4f00;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+
+.pay__methods {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.pay__methods legend {
+  font-weight: 800;
+  font-size: var(--fs-sm);
+  margin-bottom: 10px;
+}
+
+.pay__method {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--r-md);
+  border: 1.5px solid var(--line-strong);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+
+.pay__method input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--emerald-600);
+}
+
+.pay__method .icon {
+  color: var(--primary);
+}
+
+.pay__method span {
+  display: grid;
+}
+
+.pay__method small {
+  color: var(--muted);
+}
+
+.pay__method.is-checked {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.pay__secure {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  text-align: center;
+}

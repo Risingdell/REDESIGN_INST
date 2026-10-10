@@ -1,0 +1,230 @@
+.fee {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  align-items: start;
+}
+
+.fee__controls {
+  display: grid;
+  gap: 22px;
+  padding: clamp(20px, 3vw, 32px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-1);
+}
+
+.fee__group {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.fee__group legend {
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.fee__options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.fee__option {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  padding: 12px 14px 12px 42px;
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--line-strong);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+
+.fee__option small {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.fee__option input {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--emerald-600);
+}
+
+.fee__option:hover {
+  border-color: var(--primary);
+}
+
+.fee__option.is-checked {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.fee__option:focus-within {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Summary card */
+.fee__summary {
+  position: sticky;
+  top: calc(var(--header-h) + 20px);
+  padding: clamp(22px, 3vw, 32px);
+  border-radius: var(--r-lg);
+  color: #e8f4ee;
+  background: radial-gradient(500px 240px at 100% 0%, rgb(242 179 61 / 0.18), transparent 60%),
+    linear-gradient(160deg, var(--emerald-800), var(--emerald-950));
+  box-shadow: var(--sh-3);
+  display: grid;
+  gap: 10px;
+}
+
+.fee__toggle {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: var(--r-pill);
+  background: rgb(255 255 255 / 0.1);
+  justify-self: start;
+}
+
+.fee__toggle button {
+  border: 0;
+  background: none;
+  color: #cfe3d8;
+  padding: 8px 16px;
+  border-radius: var(--r-pill);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+}
+
+.fee__toggle button[aria-selected='true'] {
+  background: #fff;
+  color: var(--emerald-900);
+}
+
+.fee__label {
+  margin-top: 8px;
+  font-size: var(--fs-sm);
+  color: #a9c8b8;
+  font-weight: 600;
+}
+
+.fee__total {
+  font-size: clamp(2.4rem, 3vw + 1rem, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  line-height: 1;
+  animation: rise-in var(--t-med) var(--ease);
+}
+
+.fee__sub {
+  color: #a9c8b8;
+  font-size: var(--fs-sm);
+}
+
+.fee__lines {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+  display: grid;
+  gap: 8px;
+  font-size: var(--fs-sm);
+}
+
+.fee__lines li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fee__lines .is-discount {
+  color: var(--emerald-300);
+}
+
+.fee__subtotal {
+  padding-top: 8px;
+  border-top: 1px dashed rgb(255 255 255 / 0.18);
+  font-weight: 800;
+  color: #fff;
+}
+
+.fee__warning {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: rgb(242 179 61 / 0.14);
+  color: var(--gold-300);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.fee__warning .icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.fee__actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.fee__print {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  background: none;
+  color: #cfe3d8;
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  padding: 6px;
+}
+
+.fee__print:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .fee {
+    grid-template-columns: 1fr;
+  }
+  .fee__summary {
+    position: static;
+  }
+}
+
+@media print {
+  .fee__controls,
+  .fee__actions,
+  .fee__toggle {
+    display: none !important;
+  }
+  .fee {
+    display: block;
+  }
+  .fee__summary {
+    color: #000;
+    background: none;
+    box-shadow: none;
+    border: 1px solid #999;
+  }
+  .fee__total,
+  .fee__subtotal {
+    color: #000;
+  }
+}

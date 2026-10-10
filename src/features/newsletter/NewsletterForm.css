@@ -1,0 +1,39 @@
+.newsletter {
+  display: grid;
+  gap: 8px;
+}
+
+.newsletter__row {
+  display: flex;
+  gap: 8px;
+}
+
+.newsletter__row .input {
+  flex: 1;
+  min-width: 0;
+}
+
+.newsletter__row .btn {
+  padding: 0;
+  width: 50px;
+  min-height: 50px;
+  flex-shrink: 0;
+}
+
+.newsletter--compact .input {
+  background: rgb(255 255 255 / 0.08);
+  border-color: rgb(255 255 255 / 0.18);
+  color: #fff;
+}
+
+.newsletter--compact .input::placeholder {
+  color: rgb(255 255 255 / 0.5);
+}
+
+.newsletter__done {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-weight: 600;
+  color: var(--primary);
+}

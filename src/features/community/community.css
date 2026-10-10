@@ -1,0 +1,120 @@
+.tm {
+  display: grid;
+  gap: 22px;
+}
+
+.tm__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(100%, 560px);
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 6px 2px 14px;
+}
+
+.tm__track::-webkit-scrollbar {
+  display: none;
+}
+
+.tm__card {
+  scroll-snap-align: start;
+  margin: 0;
+  position: relative;
+  display: grid;
+  gap: 20px;
+  align-content: space-between;
+  padding: clamp(24px, 3vw, 36px);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-2);
+}
+
+.tm__quote {
+  width: 46px;
+  height: 46px;
+  color: var(--gold);
+}
+
+.tm__card blockquote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 0.6vw + 1rem, 1.35rem);
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.tm__card figcaption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tm__card figcaption > span:nth-child(2) {
+  display: grid;
+  flex: 1;
+  line-height: 1.3;
+}
+
+.tm__card small {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.tm__avatar {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--emerald-500), var(--emerald-800));
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.tm__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tm__dots {
+  display: flex;
+  gap: 8px;
+}
+
+.tm__dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border-radius: var(--r-pill);
+  border: 0;
+  background: var(--line-strong);
+  transition: width var(--t-med) var(--ease), background var(--t-fast);
+}
+
+.tm__dots button[aria-current='true'] {
+  width: 30px;
+  background: var(--primary);
+}
+
+.rating-input {
+  display: flex;
+  gap: 4px;
+  color: var(--gold-500);
+}
+
+.rating-input button {
+  border: 0;
+  background: none;
+  padding: 4px;
+  color: inherit;
+}
+
+.rating-input .icon {
+  width: 28px;
+  height: 28px;
+}

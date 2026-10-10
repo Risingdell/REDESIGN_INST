@@ -1,0 +1,257 @@
+/* ---------- Programme card ---------- */
+.pcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+}
+
+.pcard__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pcard__save {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  transition: all var(--t-fast);
+}
+
+.pcard__save:hover,
+.pcard__save.is-saved {
+  color: var(--gold-600);
+  border-color: var(--gold);
+  background: var(--gold-100);
+}
+
+.pcard__title {
+  font-size: 1.6rem;
+  margin-top: 4px;
+}
+
+/* Whole card is clickable via the title link's overlay. */
+.pcard__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.pcard__full {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+}
+
+.pcard__facts {
+  margin: 8px 0 0;
+  display: grid;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-sm);
+}
+
+.pcard__facts div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pcard__facts dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.pcard__facts dt .icon {
+  color: var(--primary);
+}
+
+.pcard__facts dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 700;
+  color: var(--text-2);
+}
+
+.pcard__actions {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pcard__compare {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 6px 10px 6px 6px;
+  border-radius: var(--r-pill);
+}
+
+.pcard__compare:hover {
+  background: var(--surface-2);
+}
+
+.pcard__compare input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--emerald-600);
+}
+
+.pcard__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-size: var(--fs-sm);
+  color: var(--primary);
+}
+
+.pcard:hover .pcard__more .icon {
+  transform: translateX(4px);
+}
+
+.pcard__more .icon {
+  transition: transform var(--t-fast);
+}
+
+/* ---------- Compare tray ---------- */
+.compare-tray {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 140;
+  background: var(--emerald-900);
+  color: #fff;
+  box-shadow: 0 -12px 30px rgb(0 0 0 / 0.2);
+  animation: tray-in var(--t-med) var(--ease);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.compare-tray__inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 70px;
+  flex-wrap: wrap;
+  padding-block: 10px;
+  padding-right: 100px;
+}
+
+.compare-tray__count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+}
+
+.compare-tray ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.compare-tray li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px 6px 14px;
+  border-radius: var(--r-pill);
+  background: rgb(255 255 255 / 0.1);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+}
+
+.compare-tray li button {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 0;
+  background: rgb(255 255 255 / 0.15);
+  color: #fff;
+}
+
+.compare-tray__clear {
+  --btn-fg: #cfe3d8;
+}
+
+@keyframes tray-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@media (max-width: 760px) {
+  .compare-tray {
+    bottom: calc(66px + env(safe-area-inset-bottom));
+    padding-bottom: 0;
+  }
+  .compare-tray__inner {
+    padding-right: var(--gutter);
+  }
+}
+
+/* ---------- Compare table ---------- */
+.compare-table-wrap {
+  overflow-x: auto;
+}
+
+.compare-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--fs-sm);
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+
+.compare-table thead th {
+  font-size: 1.2rem;
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.compare-table tbody th {
+  width: 170px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.compare-table tbody tr:nth-child(even) td,
+.compare-table tbody tr:nth-child(even) th {
+  background: var(--surface-2);
+}

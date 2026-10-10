@@ -1,0 +1,86 @@
+/**
+ * FAQs power three things: the FAQ accordions, the site search, and the chat
+ * assistant's answers. `to` links the answer to the page that resolves it.
+ */
+export const faqs = [
+  {
+    id: 'apply',
+    topic: 'Admissions',
+    q: 'How do I apply for admission?',
+    a: 'Start an online application from the Apply page. It takes about 10 minutes, saves as you go, and you can pay the application fee online at the end.',
+    to: '/admissions/apply',
+    keywords: ['apply', 'application', 'admission', 'join', 'register', 'enroll'],
+  },
+  {
+    id: 'neet',
+    topic: 'Admissions',
+    q: 'Is NEET required?',
+    a: 'NEET-UG is mandatory for MBBS and BAMS, and NEET-PG for MD/MS. Physiotherapy, nursing, allied health and pharmacy admissions are by merit or state counselling.',
+    to: '/programs',
+    keywords: ['neet', 'entrance', 'exam', 'cet', 'counselling'],
+  },
+  {
+    id: 'fees',
+    topic: 'Fees',
+    q: 'What are the fees?',
+    a: 'Use the fee estimator to see an indicative yearly cost including hostel and transport. Official fee schedules are confirmed by the admissions office.',
+    to: '/admissions#fees',
+    keywords: ['fee', 'fees', 'cost', 'tuition', 'price', 'scholarship', 'payment'],
+  },
+  {
+    id: 'hostel',
+    topic: 'Campus life',
+    q: 'Is hostel accommodation available?',
+    a: 'Yes — separate hostels are available on campus. Add hostel in the fee estimator to include it in your estimate.',
+    to: '/campus-life',
+    keywords: ['hostel', 'accommodation', 'stay', 'room', 'mess', 'food'],
+  },
+  {
+    id: 'visit',
+    topic: 'Campus life',
+    q: 'Can I visit the campus?',
+    a: 'Yes. Book a guided campus visit for a time that suits you, or take the virtual tour right now.',
+    to: '/campus-life#tour',
+    keywords: ['visit', 'tour', 'campus', 'see', 'walk'],
+  },
+  {
+    id: 'appointment',
+    topic: 'Hospital',
+    q: 'How do I book a doctor appointment?',
+    a: 'Book online from the Hospital page or call 0824 2888000. For emergencies call 0824-2888999 — we are open 24 hours.',
+    to: '/hospital#book',
+    keywords: ['appointment', 'doctor', 'opd', 'consult', 'hospital', 'book'],
+  },
+  {
+    id: 'emergency',
+    topic: 'Hospital',
+    q: 'What is the emergency number?',
+    a: 'Call 0824-2888999. Kanachur Hospital & Research Centre runs a 24×7 emergency service.',
+    href: 'tel:+918242888999',
+    keywords: ['emergency', 'ambulance', 'urgent', 'casualty', 'accident', '24x7'],
+  },
+  {
+    id: 'location',
+    topic: 'Contact',
+    q: 'Where is the campus?',
+    a: 'Mangalore University Road, Natekal, Mangaluru 575018, Karnataka. The Contact page has directions and a map.',
+    to: '/contact',
+    keywords: ['where', 'location', 'address', 'map', 'directions', 'reach'],
+  },
+  {
+    id: 'documents',
+    topic: 'Admissions',
+    q: 'What documents do I need?',
+    a: 'Class 10 and 12 marks cards, entrance scorecard (if applicable), transfer and conduct certificates, ID proof, passport-size photos and category certificate if applicable.',
+    to: '/admissions#documents',
+    keywords: ['documents', 'certificates', 'marks card', 'papers', 'checklist'],
+  },
+  {
+    id: 'results',
+    topic: 'Students',
+    q: 'Where can current students find notices and results?',
+    a: 'The Current Students hub links to university portals, the academic calendar, notices and the newsletter.',
+    to: '/students',
+    keywords: ['results', 'notice', 'calendar', 'timetable', 'portal', 'exam'],
+  },
+];

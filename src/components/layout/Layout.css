@@ -1,0 +1,21 @@
+main {
+  display: block;
+  min-height: 60vh;
+}
+
+main:focus {
+  outline: none;
+}
+
+.page-fallback {
+  min-height: 70vh;
+  display: grid;
+  place-items: center;
+  color: var(--primary);
+}
+
+.page-fallback .spinner {
+  width: 34px;
+  height: 34px;
+  border-width: 3px;
+}

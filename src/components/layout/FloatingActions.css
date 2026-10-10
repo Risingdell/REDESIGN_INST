@@ -1,0 +1,189 @@
+/* ---------- Social rail (desktop) ---------- */
+.social-rail {
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--sh-2);
+  border: 1px solid var(--line);
+}
+
+.social-rail a {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--text-2);
+  transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast);
+}
+
+.social-rail a:hover {
+  background: var(--primary);
+  color: var(--on-primary);
+  transform: scale(1.08);
+}
+
+/* ---------- Floating buttons ---------- */
+.floating-actions {
+  position: fixed;
+  right: 22px;
+  bottom: calc(22px + env(safe-area-inset-bottom));
+  z-index: 150;
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+}
+
+.fab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 56px;
+  height: 56px;
+  border-radius: var(--r-pill);
+  border: 0;
+  box-shadow: var(--sh-3);
+  transition: transform var(--t-med) var(--ease), opacity var(--t-med), padding var(--t-med) var(--ease);
+}
+
+.fab:hover {
+  transform: translateY(-3px);
+}
+
+.fab .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.fab--top {
+  width: 46px;
+  min-width: 46px;
+  height: 46px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+
+.fab--top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.fab--whatsapp {
+  background: #25d366;
+  color: #fff;
+}
+
+.fab--chat {
+  background: linear-gradient(135deg, var(--emerald-600), var(--emerald-800));
+  color: #fff;
+  padding: 0 16px;
+}
+
+.fab__label {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: max-width var(--t-slow) var(--ease);
+}
+
+.fab--chat.is-expanded .fab__label,
+.fab--chat:hover .fab__label {
+  max-width: 260px;
+}
+
+.fab__dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--emerald-700);
+}
+
+/* ---------- Mobile bottom bar ---------- */
+.mobile-bar {
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .social-rail {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .floating-actions .fab--whatsapp,
+  .floating-actions .fab--chat {
+    display: none;
+  }
+  .floating-actions {
+    bottom: calc(86px + env(safe-area-inset-bottom));
+    right: 14px;
+  }
+
+  .mobile-bar {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 160;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: end;
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -8px 24px rgb(6 42 28 / 0.08);
+  }
+
+  .mobile-bar > a,
+  .mobile-bar > button {
+    display: grid;
+    justify-items: center;
+    gap: 2px;
+    padding: 6px 2px;
+    border: 0;
+    background: none;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-2);
+  }
+
+  .mobile-bar .icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .mobile-bar__primary span {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    margin-top: -24px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--on-gold);
+    box-shadow: var(--sh-glow);
+    border: 4px solid var(--surface);
+  }
+}

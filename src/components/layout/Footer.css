@@ -1,0 +1,254 @@
+.footer {
+  position: relative;
+  isolation: isolate;
+  color: #cfe3d8;
+  background: linear-gradient(180deg, rgb(3 23 15 / 0.94), rgb(3 23 15 / 0.98)), url('/images/hospital-corridor-dark.webp') center / cover;
+  font-size: var(--fs-sm);
+  /* Re-scope tokens so shared components read correctly on the dark footer. */
+  --text: #f2faf6;
+  --text-2: #cfe3d8;
+  --muted: #8fb1a0;
+  --line: rgb(255 255 255 / 0.12);
+  --surface: rgb(255 255 255 / 0.06);
+  --primary: var(--emerald-300);
+}
+
+.footer h3 {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+.footer h3::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  margin-top: 10px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+/* CTA band */
+.footer__cta {
+  border-bottom: 1px solid var(--line);
+  background: radial-gradient(800px 260px at 20% 0%, rgb(23 153 93 / 0.35), transparent 70%);
+}
+
+.footer__cta-inner {
+  padding-block: clamp(26px, 4vw, 48px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__cta h2 {
+  color: #fff;
+  font-size: var(--fs-h2);
+  margin-top: 10px;
+}
+
+.footer__cta h2 em {
+  color: var(--gold-300);
+}
+
+.footer__cta .eyebrow {
+  color: var(--gold-300);
+}
+
+/* Columns */
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1.1fr 1.3fr;
+  gap: clamp(28px, 4vw, 56px);
+  padding-block: clamp(32px, 4vw, 56px) 28px;
+}
+
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+.footer__brand img {
+  border-radius: 50%;
+  background: #fff;
+  padding: 2px;
+}
+
+.footer__brand span {
+  display: grid;
+  line-height: 1.15;
+}
+
+.footer__brand strong {
+  font-size: 1.4rem;
+}
+
+.footer__brand small {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.footer__about p {
+  line-height: 1.75;
+}
+
+.footer__social {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 0;
+}
+
+.footer__social a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: #fff;
+  transition: background var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+}
+
+.footer__social a:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--on-gold);
+  transform: translateY(-3px);
+}
+
+.footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.footer__links a {
+  transition: color var(--t-fast), padding var(--t-fast);
+}
+
+.footer__links a:hover {
+  color: var(--gold-300);
+  padding-left: 4px;
+}
+
+.footer__contact {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.footer__contact address,
+.footer__contact > a {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-style: normal;
+  line-height: 1.6;
+}
+
+.footer__contact .icon {
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.footer__contact > a:hover {
+  color: #fff;
+}
+
+.footer__newsletter {
+  margin-top: 10px;
+  display: grid;
+  gap: 10px;
+}
+
+/* Partners strip */
+.footer__partners {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  align-items: center;
+  padding-block: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.footer__partners a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #e5f2eb;
+  font-weight: 600;
+}
+
+.footer__partners a:hover {
+  color: var(--gold-300);
+}
+
+/* Bottom bar */
+.footer__bottom {
+  border-top: 1px solid var(--line);
+  background: rgb(0 0 0 / 0.25);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.footer__bottom-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 20px;
+  color: var(--muted);
+}
+
+.footer__bottom ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__bottom a:hover {
+  color: #fff;
+}
+
+.footer__credit {
+  font-weight: 800;
+  background: linear-gradient(90deg, #3fb87e, #4f8dff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+  .footer__about {
+    grid-column: auto;
+  }
+  /* Leave room for the fixed mobile action bar. */
+  .footer__bottom {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+}

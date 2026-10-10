@@ -1,0 +1,91 @@
+.aud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+}
+
+.aud__label {
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.aud__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--r-pill);
+}
+
+.aud__option {
+  border: 0;
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: none;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.aud--light .aud__label {
+  color: rgb(255 255 255 / 0.8);
+}
+
+.aud--light .aud__options {
+  background: rgb(255 255 255 / 0.12);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(255 255 255 / 0.2);
+}
+
+.aud--light .aud__option {
+  color: rgb(255 255 255 / 0.85);
+}
+
+.aud--light .aud__option:hover {
+  color: #fff;
+  background: rgb(255 255 255 / 0.1);
+}
+
+.aud--light .aud__option[aria-checked='true'] {
+  background: #fff;
+  color: var(--emerald-900);
+}
+
+.aud--dark .aud__label {
+  color: var(--muted);
+}
+
+.aud--dark .aud__options {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+
+.aud--dark .aud__option[aria-checked='true'] {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+/* Phones: the four options can't fit one line, so use an even 2×2 grid
+   instead of letting the pill wrap unevenly. */
+@media (max-width: 560px) {
+  .aud {
+    width: 100%;
+    gap: 8px;
+  }
+  .aud__options {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    border-radius: var(--r-md);
+  }
+  .aud__option {
+    padding: 9px 8px;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    text-align: center;
+  }
+}

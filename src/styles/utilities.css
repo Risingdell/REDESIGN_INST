@@ -1,0 +1,144 @@
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--narrow {
+  max-width: calc(var(--container-narrow) + var(--gutter) * 2);
+}
+
+.section {
+  padding-block: var(--section);
+  position: relative;
+}
+
+.section--tint {
+  background: var(--surface-2);
+}
+
+/* Two neighbouring sections on the same background shouldn't stack two
+   paddings into one big gap — the second one drops its top padding. */
+.section:not(.section--tint, .section--dark) + .section:not(.section--tint, .section--dark),
+.section--tint + .section--tint {
+  padding-top: 0;
+}
+
+.section--dark {
+  background: radial-gradient(1200px 500px at 85% -10%, rgb(23 153 93 / 0.28), transparent 60%),
+    linear-gradient(160deg, var(--emerald-900), var(--emerald-950));
+  color: #e8f4ee;
+  --text: #f2faf6;
+  --text-2: #cfe3d8;
+  --muted: #9dbbab;
+  --line: rgb(255 255 255 / 0.12);
+  --surface: rgb(255 255 255 / 0.05);
+  --surface-2: rgb(255 255 255 / 0.08);
+  --primary: var(--emerald-300);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -60px;
+  z-index: 1000;
+  background: var(--gold);
+  color: var(--on-gold);
+  padding: 10px 16px;
+  border-radius: var(--r-sm);
+  font-weight: 700;
+  transition: top var(--t-fast);
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.grid {
+  display: grid;
+  gap: clamp(12px, 1.8vw, 24px);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+}
+
+.grid--3 {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+
+.grid--4 {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+}
+
+.stack > * + * {
+  margin-top: var(--stack, 1rem);
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cluster-gap, 12px);
+  align-items: center;
+}
+
+/* Makes the whole positioned parent card clickable through one real link. */
+.stretched-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+.prose p + p {
+  margin-top: 1em;
+}
+
+.prose {
+  color: var(--text-2);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* Scroll-reveal (toggled by <Reveal>). */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
+  transition-delay: var(--delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media print, (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
