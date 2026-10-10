@@ -24,7 +24,8 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="footer__cta">
-        <div className="container footer__cta-inner">
+        <div className="container">
+        <div className="footer__cta-inner glow">
           <div>
             <span className="eyebrow">Your journey starts here</span>
             <h2>
@@ -35,10 +36,11 @@ export function Footer() {
             <Button to="/admissions/apply" variant="gold" size="lg" icon="arrow-right">
               Apply now
             </Button>
-            <Button to="/contact#visit" variant="ghost-light" size="lg" iconLeft="calendar">
+            <Button to="/contact#visit" variant="outline" size="lg" iconLeft="calendar">
               Book a campus visit
             </Button>
           </div>
+        </div>
         </div>
       </div>
 

@@ -26,16 +26,17 @@
   --gold-300: #f8d488;
   --gold-100: #fdf3dc;
 
-  /* Semantic — light */
-  --bg: #fbfcfb;
+  /* Semantic — light. Client rule: every page/section background is pure white;
+     --surface-2/3 are only for small surfaces (chips, inputs, icon tiles). */
+  --bg: #ffffff;
   --surface: #ffffff;
-  --surface-2: #f3f7f4;
-  --surface-3: #e7f0ea;
+  --surface-2: #f5f8f6;
+  --surface-3: #eaf1ec;
   --text: #0e1a15;
   --text-2: #2f4038;
   --muted: #5d6e66;
-  --line: #e0e8e3;
-  --line-strong: #c9d6ce;
+  --line: #e6ece8;
+  --line-strong: #cfdad3;
   --primary: var(--emerald-700);
   --primary-strong: var(--emerald-800);
   --primary-soft: var(--emerald-50);
@@ -64,8 +65,9 @@
   --container: 1280px;
   --container-narrow: 860px;
   --gutter: clamp(16px, 3.5vw, 32px);
-  /* Vertical rhythm: ~36px on phones, ~72px on wide screens. */
-  --section: clamp(36px, 5vw, 72px);
+  /* Vertical rhythm. Sections are all white, so only one padding separates
+     neighbours (see utilities.css) — ~44px on phones, ~96px on wide screens. */
+  --section: clamp(44px, 6.5vw, 96px);
   --section-head-gap: clamp(18px, 2.4vw, 32px);
   --header-h: 76px;
   --utility-h: 40px;
@@ -78,10 +80,16 @@
   --r-lg: 26px;
   --r-xl: 36px;
   --r-pill: 999px;
-  --sh-1: 0 1px 2px rgb(6 42 28 / 0.06), 0 2px 8px rgb(6 42 28 / 0.05);
-  --sh-2: 0 6px 18px rgb(6 42 28 / 0.08), 0 2px 6px rgb(6 42 28 / 0.05);
-  --sh-3: 0 22px 50px -12px rgb(6 42 28 / 0.28);
+  /* Depth on white: layered, soft, slightly green-tinted shadows. */
+  --sh-1: 0 1px 1px rgb(6 42 28 / 0.04), 0 2px 4px rgb(6 42 28 / 0.04), 0 6px 14px rgb(6 42 28 / 0.04);
+  --sh-2: 0 1px 2px rgb(6 42 28 / 0.05), 0 6px 14px rgb(6 42 28 / 0.06), 0 18px 36px -12px rgb(6 42 28 / 0.12);
+  --sh-3: 0 2px 4px rgb(6 42 28 / 0.05), 0 14px 30px -6px rgb(6 42 28 / 0.12), 0 40px 70px -24px rgb(6 42 28 / 0.28);
   --sh-glow: 0 10px 30px -8px rgb(242 179 61 / 0.55);
+  --sh-inset: inset 0 1px 0 rgb(255 255 255 / 0.9);
+
+  /* Decorative patterns for white sections (kept very faint). */
+  --pattern-dots: radial-gradient(rgb(11 93 59 / 0.13) 1px, transparent 1.4px) 0 0 / 22px 22px;
+  --accent-gradient: linear-gradient(100deg, var(--emerald-700) 0%, var(--emerald-500) 55%, #1fae8a 100%);
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);

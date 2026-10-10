@@ -78,7 +78,7 @@ export default function InstitutionDetailPage() {
       </section>
 
       {list.length > 0 && (
-        <section className="section section--tint">
+        <section className="section">
           <div className="container">
             <SectionHeader eyebrow="Programmes" title="What you can *study* here." />
             <div className="grid grid--3">

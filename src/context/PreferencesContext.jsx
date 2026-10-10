@@ -14,7 +14,8 @@ const MAX_RECENT = 6;
 
 export function PreferencesProvider({ children }) {
   const [audienceId, setAudienceId] = useLocalStorage('kiet:audience', null);
-  const [theme, setTheme] = useLocalStorage('kiet:theme', 'system');
+  // Client requirement: the white (light) theme is the default; dark stays available via the toggle.
+  const [theme, setTheme] = useLocalStorage('kiet:theme', 'light');
   const [shortlist, setShortlist] = useLocalStorage('kiet:shortlist', []);
   const [compare, setCompare] = useLocalStorage('kiet:compare', []);
   const [recent, setRecent] = useLocalStorage('kiet:recent', []);

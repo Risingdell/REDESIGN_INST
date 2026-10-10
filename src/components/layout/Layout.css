@@ -1,6 +1,9 @@
 main {
   display: block;
   min-height: 60vh;
+  /* Decorative glows/outline numbers must never widen the page.
+     clip (unlike hidden) keeps position: sticky working inside. */
+  overflow-x: clip;
 }
 
 main:focus {

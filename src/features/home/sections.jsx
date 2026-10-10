@@ -1,27 +1,30 @@
-import { useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { site } from '@/config/site';
 import { institutions } from '@/content/institutions';
-import { programs, programsByInstitution, levels } from '@/content/programs';
+import { programsByInstitution } from '@/content/programs';
 import { departments, hospitalStats } from '@/content/hospital';
 import { news } from '@/content/news';
 import { mission, vision } from '@/content/about';
-import { createSearchIndex, search } from '@/lib/fuzzySearch';
 import { dateParts } from '@/lib/format';
+import { useParallax, useTilt } from '@/hooks/useMotion';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { Counter } from '@/components/ui/Counter';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 
-/* ---------- Why Kanachur ---------- */
+/* ---------- Why Kanachur (split: collage + text) ---------- */
 export function WhyKanachur() {
+  const parallax = useParallax(20);
   return (
     <section className="section why">
       <div className="container why__grid">
-        <Reveal className="why__media">
+        <Reveal className="why__media glow glow--gold">
           <img className="why__img why__img--main" src="/images/campus-hospital-sky.webp" alt="Kanachur Hospital & Research Centre" loading="lazy" />
-          <img className="why__img why__img--small" src="/images/clinician-stethoscope.webp" alt="" loading="lazy" />
+          <div className="why__img-wrap" ref={parallax}>
+            <img className="why__img why__img--small" src="/images/clinician-stethoscope.webp" alt="" loading="lazy" />
+          </div>
           <div className="why__badge">
             <strong>1st</strong>
             <span>Rank in MBBS, Karnataka (RGUHS)</span>
@@ -29,6 +32,7 @@ export function WhyKanachur() {
         </Reveal>
         <div>
           <SectionHeader
+            index="02"
             eyebrow="Why choose Kanachur"
             title="Tackling the challenges of delivering *quality* health care."
             lead="We uphold the highest ethical standards and pursue excellence in medical education, healthcare and research — with a teaching hospital on the same campus as every classroom."
@@ -50,194 +54,174 @@ export function WhyKanachur() {
               </Reveal>
             ))}
           </ul>
-          <dl className="stats">
-            {hospitalStats.map((s) => (
-              <div key={s.label}>
-                <dt>{s.label}</dt>
-                <dd>
-                  <Counter value={s.value} suffix={s.suffix} />
-                </dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </div>
     </section>
   );
 }
 
-/* ---------- Institutions explorer ---------- */
-export function InstitutionsExplorer() {
-  const [active, setActive] = useState(institutions[0].slug);
-  const inst = institutions.find((i) => i.slug === active);
-  const instPrograms = programsByInstitution(active);
+/* ---------- By the numbers (centred statement, outline numbers) ---------- */
+export function StatsStrip() {
+  return (
+    <section className="section numbers has-dots" aria-labelledby="numbers-title">
+      <div className="container">
+        <Reveal className="numbers__head">
+          <span className="eyebrow">By the numbers</span>
+          <h2 id="numbers-title">
+            A teaching hospital at the heart of <em>every</em> programme.
+          </h2>
+        </Reveal>
+        <dl className="numbers__grid">
+          {hospitalStats.map((s, i) => (
+            <Reveal key={s.label} delay={i * 90} className="numbers__item">
+              <dd>
+                <Counter value={s.value} suffix={s.suffix} />
+              </dd>
+              <dt>{s.label}</dt>
+            </Reveal>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Institutions (horizontal rail, snap + drag) ---------- */
+function RailCard({ inst }) {
+  const tilt = useTilt(5);
+  const count = programsByInstitution(inst.slug).length;
+  return (
+    <li className="rail__item">
+      <Link to={`/institutions/${inst.slug}`} className="rail__card tilt" ref={tilt} draggable="false">
+        <img src={inst.image} alt="" loading="lazy" draggable="false" />
+        <span className="rail__shade" />
+        <span className="rail__top">
+          <span className="badge badge--gold">{inst.code}</span>
+          {count > 0 && (
+            <span className="rail__count">
+              {count} programme{count > 1 ? 's' : ''}
+            </span>
+          )}
+        </span>
+        <span className="rail__panel">
+          <span className="rail__icon">
+            <Icon name={inst.icon} size={20} />
+          </span>
+          <strong>{inst.name}</strong>
+          <small>{inst.summary}</small>
+          <span className="rail__more">
+            Explore <Icon name="arrow-right" size={16} />
+          </span>
+        </span>
+      </Link>
+    </li>
+  );
+}
+
+export function InstitutionsRail() {
+  const trackRef = useRef(null);
+  const [progress, setProgress] = useState(0);
+  const drag = useRef({ active: false, moved: false, x: 0, left: 0 });
+
+  const scrollByCard = (dir) => {
+    const el = trackRef.current;
+    const card = el?.querySelector('.rail__item');
+    if (el && card) el.scrollBy({ left: dir * (card.offsetWidth + 16), behavior: 'smooth' });
+  };
+
+  const onScroll = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setProgress(max > 0 ? el.scrollLeft / max : 0);
+  };
+
+  // Mouse drag-to-scroll on desktop (touch already swipes natively).
+  const onPointerDown = (e) => {
+    if (e.pointerType !== 'mouse') return;
+    drag.current = { active: true, moved: false, x: e.clientX, left: trackRef.current.scrollLeft };
+  };
+  const onPointerMove = (e) => {
+    const d = drag.current;
+    if (!d.active) return;
+    const dx = e.clientX - d.x;
+    if (Math.abs(dx) > 5) {
+      d.moved = true;
+      trackRef.current.classList.add('is-dragging');
+    }
+    trackRef.current.scrollLeft = d.left - dx;
+  };
+  const endDrag = () => {
+    drag.current.active = false;
+    trackRef.current?.classList.remove('is-dragging');
+  };
+  // Swallow the click that ends a drag so it doesn't open a card.
+  const onClickCapture = (e) => {
+    if (drag.current.moved) {
+      e.preventDefault();
+      e.stopPropagation();
+      drag.current.moved = false;
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('pointerup', endDrag);
+    return () => window.removeEventListener('pointerup', endDrag);
+  }, []);
 
   return (
-    <section className="section section--tint" aria-labelledby="inst-title">
+    <section className="section rail-section" id="institutions" aria-labelledby="inst-title">
       <div className="container">
         <SectionHeader
+          index="03"
           id="inst-title"
           eyebrow="Our institutions"
           title="Pillars of knowledge, learning and *progress*."
-          lead="Explore each institution — its programmes, strengths and how to apply."
+          lead="Swipe through our institutions — each shares the campus and the teaching hospital."
           actions={
-            <Button to="/institutions" variant="outline" icon="arrow-right">
-              All institutions
-            </Button>
+            <div className="rail__controls">
+              <button type="button" className="icon-btn" onClick={() => scrollByCard(-1)} aria-label="Previous institutions">
+                <Icon name="arrow-left" />
+              </button>
+              <button type="button" className="icon-btn" onClick={() => scrollByCard(1)} aria-label="Next institutions">
+                <Icon name="arrow-right" />
+              </button>
+            </div>
           }
         />
-        <div className="explorer">
-          <div className="explorer__tabs" role="tablist" aria-label="Institutions" aria-orientation="vertical">
-            {institutions.map((i) => (
-              <button
-                key={i.slug}
-                type="button"
-                role="tab"
-                id={`tab-${i.slug}`}
-                aria-selected={i.slug === active}
-                aria-controls="explorer-panel"
-                onClick={() => setActive(i.slug)}
-                onKeyDown={(e) => {
-                  const idx = institutions.findIndex((x) => x.slug === active);
-                  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') setActive(institutions[(idx + 1) % institutions.length].slug);
-                  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') setActive(institutions[(idx - 1 + institutions.length) % institutions.length].slug);
-                }}
-                tabIndex={i.slug === active ? 0 : -1}
-              >
-                <span className="explorer__tab-icon">
-                  <Icon name={i.icon} size={18} />
-                </span>
-                <span>
-                  <small>{i.code}</small>
-                  {i.shortName}
-                </span>
-                <Icon name="chevron-right" size={18} className="explorer__chev" />
-              </button>
-            ))}
-          </div>
-
-          <article className="explorer__panel" id="explorer-panel" role="tabpanel" aria-labelledby={`tab-${inst.slug}`} key={inst.slug}>
-            <div className="explorer__media">
-              <img src={inst.image} alt="" loading="lazy" />
-              <span className="badge badge--gold">{inst.code}</span>
-            </div>
-            <div className="explorer__body">
-              <h3>{inst.name}</h3>
-              <p>{inst.summary}</p>
-              <ul className="explorer__highlights">
-                {inst.highlights.map((h) => (
-                  <li key={h}>
-                    <Icon name="check-circle" size={18} /> {h}
-                  </li>
-                ))}
-              </ul>
-              {instPrograms.length > 0 && (
-                <div className="explorer__programs">
-                  <span className="muted">Programmes:</span>
-                  {instPrograms.map((p) => (
-                    <Link key={p.slug} to={`/programs/${p.slug}`} className="chip">
-                      {p.title}
-                    </Link>
-                  ))}
-                </div>
-              )}
-              <div className="cluster">
-                <Button to={`/institutions/${inst.slug}`} icon="arrow-right">
-                  Explore {inst.shortName}
-                </Button>
-                {inst.website && (
-                  <Button href={inst.website} variant="ghost" icon="external">
-                    Visit website
-                  </Button>
-                )}
-              </div>
-            </div>
-          </article>
+      </div>
+      <ul
+        className="rail"
+        ref={trackRef}
+        onScroll={onScroll}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onClickCapture={onClickCapture}
+        aria-label="Institutions"
+      >
+        {institutions.map((inst) => (
+          <RailCard key={inst.slug} inst={inst} />
+        ))}
+      </ul>
+      <div className="container rail__footer">
+        <div className="rail__progress" aria-hidden="true">
+          <span style={{ width: `${Math.max(12, progress * 100)}%` }} />
         </div>
+        <Link to="/institutions" className="btn btn--ghost btn--sm">
+          All institutions <Icon name="arrow-right" size={16} />
+        </Link>
       </div>
     </section>
   );
 }
 
-/* ---------- Instant programme finder ---------- */
-const programIndex = createSearchIndex(
-  programs.map((p) => ({ ...p, id: p.slug, name: `${p.title} ${p.fullTitle}` })),
-  { name: 3, keywords: 2, eligibility: 1 },
-);
-
-export function ProgramFinderTeaser() {
-  const [q, setQ] = useState('');
-  const navigate = useNavigate();
-  const results = useMemo(() => (q.trim() ? search(programIndex, q, { limit: 4 }) : programs.slice(0, 4)), [q]);
-
+/* ---------- Hospital (white; hover-reveal cards) ---------- */
+export function HospitalSection() {
   return (
-    <section className="section finder" aria-labelledby="finder-title">
-      <div className="container finder__grid">
-        <div>
-          <SectionHeader
-            id="finder-title"
-            eyebrow="Find your programme"
-            title="What do you want to *become*?"
-            lead="Type a career, subject or degree — spelling mistakes are fine."
-          />
-          <form
-            className="finder__search"
-            role="search"
-            onSubmit={(e) => {
-              e.preventDefault();
-              navigate(`/programs?q=${encodeURIComponent(q)}`);
-            }}
-          >
-            <Icon name="search" />
-            <label htmlFor="finder-q" className="visually-hidden">
-              Search programmes
-            </label>
-            <input id="finder-q" value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. doctor, physio, nursing, pharmacy" autoComplete="off" />
-            <button type="submit" className="btn btn--gold btn--sm">
-              Search
-            </button>
-          </form>
-          <div className="cluster finder__chips">
-            {['Doctor', 'Physiotherapy', 'Nursing', 'Ayurveda', 'Pharmacy', 'Lab technology'].map((c) => (
-              <button key={c} type="button" className="chip" onClick={() => setQ(c)} aria-pressed={q === c}>
-                {c}
-              </button>
-            ))}
-          </div>
-        </div>
-        <ul className="finder__results" aria-live="polite">
-          {results.length === 0 && <li className="finder__none">No match yet — try “medicine” or “nursing”.</li>}
-          {results.map((p) => (
-            <li key={p.slug}>
-              <Link to={`/programs/${p.slug}`} className="finder__item">
-                <span className="finder__abbr">{p.title.replace(/[^A-Z]/g, '').slice(0, 3) || p.title.slice(0, 2)}</span>
-                <span className="finder__text">
-                  <strong>{p.title}</strong>
-                  <small>
-                    {levels[p.level]} · {p.duration}
-                  </small>
-                </span>
-                <Icon name="arrow-right" size={18} />
-              </Link>
-            </li>
-          ))}
-          <li>
-            <Link to="/programs" className="finder__all">
-              Browse & compare all {programs.length} programmes <Icon name="arrow-right" size={16} />
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- Hospital band ---------- */
-export function HospitalBand() {
-  return (
-    <section className="section section--dark hospital-band" aria-labelledby="hospital-title">
+    <section className="section hospital glow" id="hospital" aria-labelledby="hospital-title">
       <div className="container">
         <SectionHeader
+          index="05"
           id="hospital-title"
           eyebrow="Kanachur Hospital & Research Centre"
           title="Excellence in care, *compassion* in service."
@@ -247,29 +231,39 @@ export function HospitalBand() {
               <Button to="/hospital#book" variant="gold" iconLeft="calendar">
                 Book appointment
               </Button>
-              <Button to="/hospital" variant="ghost-light" icon="arrow-right">
+              <Button to="/hospital" variant="outline" icon="arrow-right">
                 All departments
               </Button>
             </div>
           }
         />
-        <div className="hospital-band__grid">
-          {departments.map((d, i) => (
-            <Reveal key={d.slug} delay={i * 60} className="dept">
-              <span className="dept__icon">
-                <Icon name={d.icon} />
-              </span>
-              <h3>{d.name}</h3>
-              <p>{d.summary}</p>
-            </Reveal>
-          ))}
-          <Reveal className="dept dept--emergency" delay={360}>
-            <span className="badge badge--accent badge--live">24×7</span>
-            <h3>Emergency?</h3>
-            <p>Call our emergency line right away.</p>
-            <a href={site.contact.emergency.href} className="dept__phone">
-              <Icon name="phone" /> {site.contact.emergency.label}
-            </a>
+        <div className="hospital__grid">
+          {departments
+            .filter((d) => d.slug !== 'emergency')
+            .map((d, i) => (
+              <Reveal key={d.slug} delay={i * 60}>
+                <Link to="/hospital#departments" className="dept-card">
+                  <span className="dept-card__icon">
+                    <Icon name={d.icon} />
+                  </span>
+                  <strong>{d.name}</strong>
+                  <span className="dept-card__reveal">
+                    <small>{d.summary}</small>
+                    <span className="dept-card__more">
+                      Book a visit <Icon name="arrow-right" size={14} />
+                    </span>
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          <Reveal delay={320}>
+            <div className="dept-card dept-card--emergency">
+              <span className="badge badge--accent badge--live">24×7 Emergency</span>
+              <strong>In an emergency, call now</strong>
+              <a href={site.contact.emergency.href} className="dept-card__phone">
+                <Icon name="phone" /> {site.contact.emergency.label}
+              </a>
+            </div>
           </Reveal>
         </div>
       </div>
@@ -277,7 +271,7 @@ export function HospitalBand() {
   );
 }
 
-/* ---------- Admissions journey ---------- */
+/* ---------- Admissions journey (centred steps) ---------- */
 export function AdmissionsJourney() {
   const steps = [
     { icon: 'search', title: 'Explore', text: 'Find and compare programmes, check eligibility and estimate fees.', to: '/programs' },
@@ -288,7 +282,7 @@ export function AdmissionsJourney() {
   return (
     <section className="section journey" aria-labelledby="journey-title">
       <div className="container">
-        <SectionHeader id="journey-title" eyebrow="Admissions 2026–27" title="Four steps to your *seat*." align="center" />
+        <SectionHeader index="07" id="journey-title" eyebrow="Admissions 2026–27" title="Four steps to your *seat*." align="center" />
         <ol className="journey__steps">
           {steps.map((s, i) => (
             <Reveal as="li" key={s.title} delay={i * 100}>
@@ -349,9 +343,10 @@ export function NewsCard({ item }) {
 export function NewsSection() {
   const latest = [...news].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
   return (
-    <section className="section section--tint" aria-labelledby="news-title">
+    <section className="section" aria-labelledby="news-title">
       <div className="container">
         <SectionHeader
+          index="09"
           id="news-title"
           eyebrow="News & events"
           title="What's happening at *Kanachur*."
@@ -373,12 +368,15 @@ export function NewsSection() {
   );
 }
 
-/* ---------- Mission & vision ---------- */
+/* ---------- Mission & vision (white cards) ---------- */
 export function MissionVision() {
   return (
     <section className="section mission" id="mission" aria-labelledby="mission-title">
       <div className="container mission__grid">
         <Reveal className="mission__card mission__card--mission">
+          <span className="mission__mark" aria-hidden="true">
+            <Icon name="quote" />
+          </span>
           <span className="eyebrow">Our mission</span>
           <h2 id="mission-title">{mission.heading}</h2>
           <p>{mission.body}</p>

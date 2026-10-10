@@ -89,6 +89,26 @@ h3 em {
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--primary);
+  /* One key word per heading carries the brand as gradient text. */
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-right: 0.06em; /* keeps the italic overhang inside the clip */
+}
+
+/* On photos the accent word stays solid gold for contrast. */
+.hero__title em,
+.page-hero h1 em {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+:root[data-theme='dark'] h1 em,
+:root[data-theme='dark'] h2 em,
+:root[data-theme='dark'] h3 em {
+  background: none;
+  -webkit-text-fill-color: currentColor;
 }
 
 @media (prefers-reduced-motion: reduce) {

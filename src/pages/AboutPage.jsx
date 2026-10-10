@@ -60,7 +60,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section section--tint mission" id="mission">
+      <section className="section mission" id="mission">
         <div className="container mission__grid">
           <div className="mission__card mission__card--mission">
             <span className="eyebrow">Our mission</span>
@@ -93,7 +93,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section section--tint" id="leadership">
+      <section className="section" id="leadership">
         <div className="container">
           <SectionHeader eyebrow="Leadership" title="The people *behind* Kanachur." />
           <div className="grid grid--3">

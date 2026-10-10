@@ -27,8 +27,10 @@
   box-shadow: var(--sh-2);
 }
 
+/* Press state: a quick, physical-feeling squeeze. */
 .btn:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.97);
+  transition-duration: 80ms;
 }
 
 .btn[disabled],
@@ -158,6 +160,31 @@
 .section-header {
   max-width: 760px;
   margin-bottom: var(--section-head-gap);
+}
+
+.section-header > div {
+  position: relative;
+}
+
+/* Large outline number behind a section heading (decorative). */
+.section-header__num {
+  position: absolute;
+  left: -0.06em;
+  top: -0.72em;
+  z-index: -1;
+  font-size: clamp(4.5rem, 9vw, 8.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--line);
+  pointer-events: none;
+  user-select: none;
+}
+
+.section-header--center .section-header__num {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .section-header--center {

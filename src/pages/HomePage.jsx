@@ -1,21 +1,39 @@
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 import { Hero } from '@/features/home/Hero';
+import { ChapterNav } from '@/features/home/ChapterNav';
 import { StartHere } from '@/features/home/StartHere';
 import { FitFinder } from '@/features/home/FitFinder';
+import { DayStory } from '@/features/home/DayStory';
 import {
   AdmissionsJourney,
-  HospitalBand,
-  InstitutionsExplorer,
+  HospitalSection,
+  InstitutionsRail,
   MissionVision,
   NewsSection,
+  StatsStrip,
   WhyKanachur,
 } from '@/features/home/sections';
 import { VirtualTour } from '@/features/tour/VirtualTour';
 import { Testimonials } from '@/features/community/Testimonials';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Button } from '@/components/ui/Button';
+import { Icon } from '@/components/ui/Icon';
 import '@/features/home/home.css';
 
+/** Separates sections with a hairline and a label instead of a colour band. */
+function Divider({ icon, label }) {
+  return (
+    <div className="container divider" role="separator">
+      <Icon name={icon} size={16} /> {label} <Icon name={icon} size={16} />
+    </div>
+  );
+}
+
+/*
+ * Every section is white (client rule), so no two neighbours share a layout:
+ * bento → split → statement → rail → tabbed split → hover grid → sticky story
+ * → steps → framed tour → card grid → carousel → split cards.
+ */
 export default function HomePage() {
   useDocumentMeta({
     title: '',
@@ -26,16 +44,21 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <ChapterNav />
       <StartHere />
       <WhyKanachur />
-      <InstitutionsExplorer />
+      <StatsStrip />
+      <InstitutionsRail />
       <FitFinder />
-      <HospitalBand />
+      <Divider icon="stethoscope" label="Kanachur Hospital & Research Centre" />
+      <HospitalSection />
+      <DayStory />
       <AdmissionsJourney />
 
-      <section className="section section--tint" aria-labelledby="tour-title">
+      <section className="section" id="campus" aria-labelledby="tour-title">
         <div className="container">
           <SectionHeader
+            index="08"
             id="tour-title"
             eyebrow="Virtual campus tour"
             title="Walk our campus from *anywhere*."
@@ -47,9 +70,10 @@ export default function HomePage() {
 
       <NewsSection />
 
-      <section className="section" aria-labelledby="stories-title">
+      <section className="section" id="stories" aria-labelledby="stories-title">
         <div className="container">
           <SectionHeader
+            index="10"
             id="stories-title"
             eyebrow="Community voices"
             title="Stories from our *alumni*."
@@ -63,6 +87,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Divider icon="heart" label="Our purpose" />
       <MissionVision />
     </>
   );

@@ -16,8 +16,9 @@
   height: var(--ticker-h);
   display: flex;
   align-items: center;
-  background: var(--emerald-950);
-  color: #dff3e8;
+  background: #fff;
+  color: var(--emerald-800);
+  border-bottom: 1px solid var(--line);
   font-size: 0.8rem;
   font-weight: 600;
   overflow: hidden;
@@ -77,8 +78,21 @@
 }
 
 .ticker__list a:hover {
-  color: var(--gold-300);
+  color: var(--crimson-600);
   text-decoration: underline;
+}
+
+/* Reading-progress bar along the bottom of the nav (every page). */
+.scroll-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--emerald-600), var(--gold));
+  pointer-events: none;
 }
 
 @keyframes ticker {

@@ -48,7 +48,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="section section--tint">
+      <section className="section">
         <div className="container split">
           <div className="panel">
             <SectionHeader eyebrow="Send an enquiry" title="Ask us *anything*." lead="We reply within one working day." />

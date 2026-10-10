@@ -103,7 +103,7 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section className="section section--tint" id="eligibility">
+      <section className="section" id="eligibility">
         <div className="container">
           <SectionHeader eyebrow="Eligibility at a glance" title="Who can *apply*?" lead="Detailed criteria are on each programme page." />
           <div className="grid grid--3">
@@ -134,7 +134,7 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section className="section section--tint" id="documents">
+      <section className="section" id="documents">
         <div className="container split">
           <div>
             <SectionHeader eyebrow="Document checklist" title="What to keep *ready*." lead="Bring originals and two photocopies of each to verification." />

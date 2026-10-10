@@ -117,7 +117,7 @@ export default function AlumniPage() {
           </div>
         </div>
       </section>
-      <section className="section section--tint">
+      <section className="section">
         <div className="container">
           <SectionHeader eyebrow="Alumni voices" title="Where Kanachur *took them*." />
           <Testimonials />

@@ -14,9 +14,10 @@ export function StartHere() {
   const tiles = audience.quickLinks.map((key) => ({ key, ...quickLinkCatalog[key] }));
 
   return (
-    <section className="section start" id="start" aria-labelledby="start-title">
+    <section className="section start has-dots" id="start" aria-labelledby="start-title">
       <div className="container">
         <SectionHeader
+          index="01"
           id="start-title"
           eyebrow="Start here"
           title="Tell us who you are — we'll show you the *way*."

@@ -58,7 +58,7 @@ export default function HospitalPage() {
         </div>
       </section>
 
-      <section className="section section--tint" id="departments">
+      <section className="section" id="departments">
         <div className="container">
           <SectionHeader eyebrow="Departments" title="Specialist care, *under one roof*." lead="Choose a department to book directly." />
           <div className="grid grid--3 grid--dense">
@@ -98,10 +98,10 @@ export default function HospitalPage() {
             />
           </div>
           <div className="stack" style={{ '--stack': '20px' }}>
-            <div className="dept dept--emergency" style={{ color: '#fff' }}>
-              <span className="badge badge--live">24×7 emergency</span>
-              <h3>In an emergency, don't book — call.</h3>
-              <a href={site.contact.emergency.href} className="dept__phone">
+            <div className="dept-card dept-card--emergency">
+              <span className="badge badge--accent badge--live">24×7 emergency</span>
+              <strong>In an emergency, don't book — call.</strong>
+              <a href={site.contact.emergency.href} className="dept-card__phone">
                 <Icon name="phone" /> {site.contact.emergency.label}
               </a>
             </div>

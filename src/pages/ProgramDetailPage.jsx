@@ -140,7 +140,7 @@ export default function ProgramDetailPage() {
       </section>
 
       {related.length > 0 && (
-        <section className="section section--tint">
+        <section className="section">
           <div className="container">
             <SectionHeader eyebrow="You may also like" title="Related *programmes*." />
             <div className="grid grid--3">

@@ -93,7 +93,7 @@ export default function NewsDetailPage() {
         </div>
       </section>
       {more.length > 0 && (
-        <section className="section section--tint">
+        <section className="section">
           <div className="container">
             <SectionHeader eyebrow="Keep reading" title="More *news*." />
             <div className="grid grid--3">

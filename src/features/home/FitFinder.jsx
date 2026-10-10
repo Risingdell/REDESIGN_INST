@@ -211,10 +211,11 @@ function QuickSearch() {
 export function FitFinder() {
   const [mode, setMode] = useState('quiz');
   return (
-    <section className="section fit" aria-labelledby="fit-title">
+    <section className="section fit glow glow--gold" id="programmes" aria-labelledby="fit-title">
       <div className="container fit__grid">
         <div className="fit__intro">
           <SectionHeader
+            index="04"
             id="fit-title"
             eyebrow="Find your fit"
             title="Not sure what to study? *Three taps.*"

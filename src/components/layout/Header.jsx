@@ -92,9 +92,15 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeTimer = useRef();
   const navRef = useRef(null);
+  const progressRef = useRef(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      // Written straight to the DOM so scrolling never re-renders the header.
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (progressRef.current) progressRef.current.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -217,6 +223,7 @@ export function Header() {
               </button>
             </div>
           </div>
+          <span className="scroll-progress" ref={progressRef} aria-hidden="true" />
         </header>
       </div>
       <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />

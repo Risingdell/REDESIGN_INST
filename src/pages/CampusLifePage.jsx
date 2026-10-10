@@ -51,7 +51,7 @@ export default function CampusLifePage() {
         </div>
       </section>
 
-      <section className="section section--tint">
+      <section className="section">
         <div className="container">
           <SectionHeader eyebrow="Facilities" title="Everything you need, *on campus*." />
           <div className="grid grid--3 grid--dense">
@@ -96,7 +96,7 @@ export default function CampusLifePage() {
         </div>
       </section>
 
-      <section className="section section--tint" id="stories">
+      <section className="section" id="stories">
         <div className="container">
           <SectionHeader
             eyebrow="Student stories"

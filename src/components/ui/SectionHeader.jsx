@@ -11,10 +11,16 @@ export function renderAccent(text) {
     .map((part, i) => (part.startsWith('*') && part.endsWith('*') ? <em key={i}>{part.slice(1, -1)}</em> : part));
 }
 
-export function SectionHeader({ eyebrow, title, lead, align = 'left', as: Tag = 'h2', actions, className, id }) {
+export function SectionHeader({ eyebrow, title, lead, align = 'left', as: Tag = 'h2', actions, className, id, index }) {
   return (
     <Reveal className={cx('section-header', align === 'center' && 'section-header--center', actions && 'section-header--split', className)}>
       <div>
+        {/* Large outline number behind the heading — decorative only. */}
+        {index && (
+          <span className="section-header__num" aria-hidden="true">
+            {index}
+          </span>
+        )}
         {eyebrow && <span className="eyebrow">{eyebrow}</span>}
         <Tag id={id}>{renderAccent(title)}</Tag>
         {lead && <p className="lead">{lead}</p>}

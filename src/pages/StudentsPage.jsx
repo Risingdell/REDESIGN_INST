@@ -50,7 +50,7 @@ export default function StudentsPage() {
           ))}
         </div>
       </section>
-      <section className="section section--tint">
+      <section className="section">
         <div className="container split">
           <div>
             <SectionHeader eyebrow="Notice board" title="Latest *updates*." />
